@@ -1,5 +1,4 @@
-
-/*import React from 'react'
+import React from 'react'
 
 const Tasks = ({tasksadded}) => {
   return (
@@ -8,4 +7,4 @@ const Tasks = ({tasksadded}) => {
   )
 }
 
-export default Tasks*/
+export default Tasks

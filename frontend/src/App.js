@@ -1,22 +1,17 @@
-
-import './App.css';
+import React from 'react';
+// import './App.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react'
+import InputComponent from './InputComponent';
 
 function App() {
       return (
         <ChakraProvider>
-
-          < Input placeholder='Enter text here' 
-          size='lg' 
-          variant="outline"
-          htmlSize={3}
-          _placeholder={{ opacity: 1, color: 'gray.500' }}
-          className="input"/>
-    
+          <InputComponent />
         </ChakraProvider>
       )
     }
     
 
 export default App;
+
