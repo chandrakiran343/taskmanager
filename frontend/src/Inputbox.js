@@ -1,9 +1,8 @@
-
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react'
 
-function App() {
+function Inputbox() {
       return (
         <ChakraProvider>
 
@@ -19,4 +18,4 @@ function App() {
     }
     
 
-export default App;
+export default Inputbox;

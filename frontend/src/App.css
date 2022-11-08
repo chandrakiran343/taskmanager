@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+.input{
+  text-align: center;
+  height:auto;
+  padding-left: 2px;
+  padding-top: 2px;
+  width: 6px;
+}
+.button{
+  text-align: center;
+  position:relative;
+  margin:0;
+  top:50%;
+
+}
