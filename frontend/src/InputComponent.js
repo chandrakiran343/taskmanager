@@ -16,9 +16,10 @@ function InputComponent(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const newTasks = [...tasks, input]
-    setTasks(newTasks)
-    setInput('')
+    if(tasks.length < 10){
+      setTasks([...tasks, input])
+      setInput('')
+    }
   }
 
 
@@ -35,9 +36,12 @@ function InputComponent(props) {
         <Button type='submit'
           onClick={handleSubmit}
           className="button"
+          colorScheme="blue"
           id='button'>Click</Button>
                 
-        <Tasks tasksadded={tasks} />
+        <div className='taskscontainer'>
+          <Tasks tasksadded={tasks} setTasks={setTasks} />
+        </div>
       </div>
     </div>
   )
