@@ -1,0 +1,9 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Games\\ojdbc11-full\\ojdbc11.jar"
+    ],
+    "java.project.sourcePaths": [
+        "."
+    ]
+}

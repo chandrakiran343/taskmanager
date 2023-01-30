@@ -1,37 +1,52 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/card'
 import { Button,ButtonGroup } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/layout'
 import "./tasks.css"
-const Tasks = ({tasksadded, setTasks}) => {
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
+const Tasks = ({ tasksadded, setTasks, setInput, setFlag, setIndex }) => {
   
-  const onDelete = (id) => {
-    tasksadded = tasksadded.filter((task, index) => index !== id)
+  const nav = useNavigate();
+
+  const onDelete = async (id) => {
+    console.log(tasksadded, id);
+    tasksadded = tasksadded.filter((element, index) => element._id !== id)
+    await axios.delete(`http://localhost:5505/tasks/${id}`);
     setTasks(tasksadded)
   }
 
-  const onDone = (id) => { 
-    document.getElementById(id).style.textDecoration = "line-through"
+  const onDone = async (id) => { 
+    document.getElementById(id).style.textDecoration = "line-through";
+    await axios.patch(`http://localhost:5505/tasks/${id}`, { completed: true })
+  }
+
+  const onEdit = async (id,index) => {  
+    setInput(tasksadded[index].name)
+    setFlag(true)
+    setIndex(index)
+
   }
 
   
   return (
     <>
-      {tasksadded.map((task, index) => {
+      {tasksadded.length >0 &&tasksadded.map((element, index) => {
         
         
-        return <Card key={index} id={index  } className='cardstyle' >
+        return <Card style={{ textDecoration: element.completed?"line-through":""}} key={element._id} /*onClick={()=>nav(`/edit/${element._id}`)}*/ id={element._id} className='cardstyle' >
           
-          <CardHeader autoCapitalize='characters' fontSize={"5xl"}>{task}</CardHeader>
+          <CardHeader autoCapitalize='characters' fontSize={"2xl"}>{element.name}</CardHeader>
           
           <Text fontSize={"xl"}>Task {index + 1}</Text>
           
           <ButtonGroup alignContent={"center"}>
-            <Button onClick={()=>onDone(index)} colorScheme="green">Done</Button>
-            <Button onClick={() => onDelete(index)} colorScheme="red">Delete</Button>
+            <Button onClick={() => onDone(element._id)} colorScheme="green">Done</Button>
+            <Button onClick={() => onEdit(element._id,index)} colorScheme="blue">Edit</Button>
+            <Button onClick={() => onDelete(element._id)} colorScheme="red">Delete</Button>
           </ButtonGroup>
         
-        </Card>
+        </Card> 
       })}
     </>
     
