@@ -60,6 +60,7 @@ function InputComponent(props) {
 
   return (
     <div className='container'>
+      
       <div className='box'>
         <Input className='input'
           id="input-box"
